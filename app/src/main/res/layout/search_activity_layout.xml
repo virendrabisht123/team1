@@ -4,17 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textViewSearchList"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_search"
+        android:text="Normal"
+        android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="@dimen/size_trip_advisor"
-        android:layout_centerHorizontal="true"
-        android:background="@color/red"
-        android:padding="10dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/size_extra_large"
+        android:background="@color/background"
+        android:gravity="center_horizontal"
+        android:padding="6dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewSearch"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="6dp"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_below="@id/textViewSearchList"
+        android:layout_marginTop="10dp"/>
+
+    <include
+        layout="@layout/item_progress"
+        android:visibility="gone"/>
+
+    <include
+        layout="@layout/error_view"
+        android:visibility="gone"/>
 
 </RelativeLayout>

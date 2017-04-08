@@ -1,30 +1,35 @@
 package team.ixigo.hack.com.team1;
 
+import java.util.List;
+
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.Query;
+import team.ixigo.hack.com.team1.model.response.RecommendedListResponse;
+import team.ixigo.hack.com.team1.model.response.SearchResponse;
+import team.ixigo.hack.com.team1.model.response.SearchResponse1;
 
 public interface Service
 {
-    @GET("/action/content/zeus/autocomplete") //1
+    @GET("/action/content/zeus/autocomplete/") //1
     void getSearchLocation(
             @Query("searchFor") String searchFor,
-            @Query("neCategories=") String neCategories,
-            @Query("query") String version,
-            Callback<Object> callback);
+            @Query("neCategories") String neCategories,
+            @Query("query") String query,
+            Callback<List<SearchResponse>> callback);
 
-    @GET("api/v3/namedentities/id/{cityId}/") //3
+    @GET("/api/v3/namedentities/id/{cityId}/") //3
     void getCityDetails(
             @Path("cityId") String cityId,
             @Query("apiKey") String apiKey,
             Callback<Object> callback);
 
-    @GET("api/v2/widgets/brand/inspire/") // 4
+    @GET("/api/v2/widgets/brand/inspire/") // 4
     void getRecommended(
             @Query("product") String searchFor,
             @Query("apiKey") String neCategories,
-            Callback<Object> callback);
+            Callback<RecommendedListResponse> callback);
 
     @GET("/api/v3/namedentities/city/{cityId}/categories/") // 2
     void recommendationDetails(

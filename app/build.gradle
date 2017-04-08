@@ -39,7 +39,7 @@ android {
     }
     productFlavors {
         prod {
-            buildConfigField "String", "BASE_URL", '\"https://api.foursquare.com/v2\"'
+            buildConfigField "String", "BASE_URL", '\"http://build2.ixigo.com\"'
         }
     }
 }

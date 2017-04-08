@@ -1,18 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="team.ixigo.hack.com.team1.landing.MainActivity">
+    tools:context="team.ixigo.hack.com.team1.landing.MainActivity"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/relativeLayoytTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_search"
+            android:textStyle="bold"
+            android:textSize="@dimen/size_trip_advisor"
+            android:layout_centerHorizontal="true"
+            android:padding="6dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/blue"
+            android:drawableRight="@drawable/ic_search"
+            android:background="@drawable/background_search_border"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="10dp"/>
+
+        <EditText
+            android:id="@+id/editTextSearchLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/textViewSearch"
+            android:layout_marginLeft="10dp"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relativeLayoytTop">
+
+        <TextView
+            android:id="@+id/textViewRecommendedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Select from Ixigo recommended"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textSize="@dimen/size_recommended_text"
+            android:ellipsize="marquee"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewNormal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Normal"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textViewRecommendedText"
+        android:textSize="@dimen/size_extra_large"
+        android:background="@color/background"
+        android:gravity="center_horizontal"
+        android:padding="6dp"/>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewRecommended1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="6dp"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_below="@id/textViewNormal"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/textViewBudgeted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerViewRecommended1"
+        android:layout_marginTop="10dp"
+        android:text="Chief Flight"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_extra_large"
+        android:background="@color/background"
+        android:gravity="center_horizontal"
+        android:padding="6dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewRecommended2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="6dp"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_below="@id/textViewBudgeted"
+        android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+
+    <include
+        layout="@layout/item_progress"
+        android:visibility="gone"/>
+
+    <include
+        layout="@layout/error_view"
+        android:visibility="gone"/>
+    </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_search_border_list">
 
     <RelativeLayout
         android:id="@+id/relativeLayoutOuter"
@@ -16,43 +17,48 @@
             android:id="@+id/imageViewCity"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_launcher"
+            android:layout_centerHorizontal="true"/>
 
         <RelativeLayout
             android:id="@+id/relativeLayoutParent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/imageViewCity"
+            android:layout_below="@id/imageViewCity"
             android:layout_centerVertical="true">
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutNames"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/textViewCityName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"/>
 
                 <TextView
                     android:id="@+id/textViewSearchCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textViewCityName"/>
+                    android:layout_below="@id/textViewCityName"
+                    android:gravity="center_horizontal"/>
                 <TextView
                     android:id="@+id/textViewSearchState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textViewSearchCity"/>
-
+                    android:layout_below="@id/textViewSearchCity"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone"/>
                 <TextView
                     android:id="@+id/textViewPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textViewSearchState"/>
+                    android:layout_below="@id/textViewSearchState"
+                    android:gravity="center_horizontal"/>
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>

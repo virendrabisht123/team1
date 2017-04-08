@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Team1</string>
+    <string name="app_name">Trip Adviser</string>
     <string name="label_trip_advisor">Trip Advisor</string>
+    <string name="label_power_by_ixigo">Powered by @abc</string>
 
-    <string name="label_search">Search to visit</string>
+    <string name="label_search">Search</string>
 
     <string name="title_pick_location">Select Location</string>
     <string name="location_services_title">Location services disabled</string>
@@ -19,5 +20,9 @@
     <string name="google_play_services_not_available">Google Play Services are not available on your Device</string>
     <string name="no_data_found">No data found</string>
     <string name="validation_enter_reviews">Please enter the review first</string>
+
+    <string name="network_issues">No network available, please connect your network first</string>
+    <string name="label_error">Try Again</string>
+    <string name="validation_search_location">Please first enter the Location to search</string>
 
 </resources>
