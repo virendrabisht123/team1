@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +24,9 @@ import team.ixigo.hack.com.team1.AppComponent;
 import team.ixigo.hack.com.team1.MainApp;
 import team.ixigo.hack.com.team1.R;
 import team.ixigo.hack.com.team1.activity.BaseActivity;
+import team.ixigo.hack.com.team1.adapter.HomeRecommendedPlacesAdapter;
 import team.ixigo.hack.com.team1.adapter.SearchPlacesAdapter;
+import team.ixigo.hack.com.team1.locationdetails.LocationDetailsActivity;
 import team.ixigo.hack.com.team1.model.response.SearchResponse;
 import team.ixigo.hack.com.team1.utility.AppUtil;
 import team.ixigo.hack.com.team1.utility.CheckConnection;
@@ -49,6 +53,12 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
     RelativeLayout relativeLayoutErrorOccured;
     @Bind(R.id.textViewError)
     TextView textViewError;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.textViewTitle)
+    TextView textViewTitle;
+    @Bind(R.id.imageButtonBackPress)
+    ImageButton imageButtonBackPress;
 
     private SearchPlacesAdapter searchPlacesAdapter;
     private ArrayList<SearchResponse> listArrayList;
@@ -82,6 +92,10 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
 
     private void initializeView()
     {
+        BackButtonClickListener backButtonClickListener = new BackButtonClickListener();
+        imageButtonBackPress.setOnClickListener(backButtonClickListener);
+        setToolBar(toolbar, textViewTitle, getResources().getString(R.string.title_search_screen), false, false);
+
         listArrayList = new ArrayList<SearchResponse>();
 
         LinearLayoutManager recommendedLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -152,6 +166,11 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
     @Override
     public void setOnClickListener(int position, String typeName)
     {
+        String cityId = null;
+        cityId = listArrayList.get(position).getCityId();
 
+        Intent intent = new Intent(this, LocationDetailsActivity.class);
+        intent.putExtra(Constants.CITY_ID, cityId);
+        startActivity(intent);
     }
 }

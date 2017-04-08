@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar_layout"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarLayout">
 
     <TextView
         android:id="@+id/textViewSearchList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Normal"
+        android:text="Check following places"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
@@ -20,7 +28,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewSearch"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="6dp"
@@ -38,5 +46,5 @@
     <include
         layout="@layout/error_view"
         android:visibility="gone"/>
-
+    </RelativeLayout>
 </RelativeLayout>

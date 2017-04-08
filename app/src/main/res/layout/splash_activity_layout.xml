@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/flight_icons"
-        android:layout_margin="10dp"/>
+        android:src="@drawable/trip_advisor_icon"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"

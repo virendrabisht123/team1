@@ -3,6 +3,7 @@ package team.ixigo.hack.com.team1.utility;
 public class Constants
 {
     public static final String DATA = "DATA";
+    public static final String CITY_ID = "CITY_ID";
 
     public static final String LOG_TAG = "LOG_TAG";
     public static final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;

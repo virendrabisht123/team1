@@ -4,13 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
+
 import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import retrofit.RetrofitError;
@@ -20,6 +25,7 @@ import team.ixigo.hack.com.team1.MainApp;
 import team.ixigo.hack.com.team1.R;
 import team.ixigo.hack.com.team1.activity.BaseActivity;
 import team.ixigo.hack.com.team1.adapter.HomeRecommendedPlacesAdapter;
+import team.ixigo.hack.com.team1.locationdetails.LocationDetailsActivity;
 import team.ixigo.hack.com.team1.model.response.RecommendedListResponse;
 import team.ixigo.hack.com.team1.search.SearchActivity;
 import team.ixigo.hack.com.team1.utility.AppUtil;
@@ -54,6 +60,12 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
     TextView textViewError;
     @Bind(R.id.editTextSearchLocation)
     EditText editTextSearchLocation;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.textViewTitle)
+    TextView textViewTitle;
+    @Bind(R.id.imageButtonBackPress)
+    ImageButton imageButtonBackPress;
 
     private HomeRecommendedPlacesAdapter homeRecommendedPlacesAdapter;
     private HomeRecommendedPlacesAdapter homeRecommendedPlacesAdapter1;
@@ -89,19 +101,24 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
 
     private void initializeView()
     {
+        BackButtonClickListener backButtonClickListener = new BackButtonClickListener();
+        imageButtonBackPress.setOnClickListener(backButtonClickListener);
+
+        setToolBar(toolbar, textViewTitle, getResources().getString(R.string.title_home_screen), false, false);
+
         recommendedItems1 = new ArrayList<RecommendedListResponse.Data.RecommendedItems>();
         recommendedItems2 = new ArrayList<RecommendedListResponse.Data.RecommendedItems>();
 
         LinearLayoutManager recommendedLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewRecommended1.setLayoutManager(recommendedLinearLayoutManager);
 
-        homeRecommendedPlacesAdapter = new HomeRecommendedPlacesAdapter(this, recommendedItems1, this);
+        homeRecommendedPlacesAdapter = new HomeRecommendedPlacesAdapter(this, recommendedItems1, this, HomeRecommendedPlacesAdapter.TYPE_FLIGHT);
         recyclerViewRecommended1.setAdapter(homeRecommendedPlacesAdapter);
 
         LinearLayoutManager buyersDemandLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewRecommended2.setLayoutManager(buyersDemandLinearLayoutManager);
 
-        homeRecommendedPlacesAdapter1 = new HomeRecommendedPlacesAdapter(this, recommendedItems2, this);
+        homeRecommendedPlacesAdapter1 = new HomeRecommendedPlacesAdapter(this, recommendedItems2, this, HomeRecommendedPlacesAdapter.TYPE_BUDGET_FLIGHT);
         recyclerViewRecommended2.setAdapter(homeRecommendedPlacesAdapter1);
 
         textViewSearch.setOnClickListener(this);
@@ -178,7 +195,20 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
     }
 
     @Override
-    public void setOnClickListener(int position, String typeName) {
+    public void setOnClickListener(int position, int typeName) {
 
+        String cityId = null;
+        if(typeName == HomeRecommendedPlacesAdapter.TYPE_FLIGHT)
+        {
+            cityId = recommendedItems1.get(position).getCityId();
+        }
+        else if(typeName == HomeRecommendedPlacesAdapter.TYPE_BUDGET_FLIGHT)
+        {
+            cityId = recommendedItems2.get(position).getCityId();
+        }
+
+        Intent intent = new Intent(this, LocationDetailsActivity.class);
+        intent.putExtra(Constants.CITY_ID, cityId);
+        startActivity(intent);
     }
 }

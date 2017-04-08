@@ -7,6 +7,7 @@ import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.Query;
 import team.ixigo.hack.com.team1.model.response.RecommendedListResponse;
+import team.ixigo.hack.com.team1.model.response.SearchLocationDetailsResponse;
 import team.ixigo.hack.com.team1.model.response.SearchResponse;
 import team.ixigo.hack.com.team1.model.response.SearchResponse1;
 
@@ -23,7 +24,7 @@ public interface Service
     void getCityDetails(
             @Path("cityId") String cityId,
             @Query("apiKey") String apiKey,
-            Callback<Object> callback);
+            Callback<SearchLocationDetailsResponse> callback);
 
     @GET("/api/v2/widgets/brand/inspire/") // 4
     void getRecommended(

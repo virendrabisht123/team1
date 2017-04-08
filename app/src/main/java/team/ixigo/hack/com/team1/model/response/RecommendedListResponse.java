@@ -50,6 +50,15 @@ public class RecommendedListResponse extends BaseResponse
             private String stateName;
             private String price;
             private String [] destinationCategories;
+            private String cityId;
+
+            public String getCityId() {
+                return cityId;
+            }
+
+            public void setCityId(String cityId) {
+                this.cityId = cityId;
+            }
 
             public String getImage() {
                 return image;

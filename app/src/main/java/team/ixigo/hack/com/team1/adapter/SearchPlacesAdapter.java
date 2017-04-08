@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -30,7 +28,7 @@ public class SearchPlacesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public interface SearchPlacesSectionClickListener
     {
-        void setOnClickListener(int position, String typeName);
+        void setOnClickListener(int position, String type);
     }
 
     public SearchPlacesAdapter(Activity context, ArrayList<SearchResponse> listArrayList, SearchPlacesSectionClickListener placesSectionClickListener)
@@ -75,7 +73,7 @@ public class SearchPlacesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             if(!AppUtil.isStringEmpty(list.getUrl()))
             {
-                Picasso.with(context).load(list.getUrl()).into(recommendedHomeViewHolder.imageViewCity);
+                //Picasso.with(context).load(list.getUrl()).into(recommendedHomeViewHolder.imageViewCity);
             }
 
             recommendedHomeViewHolder.textViewCityName.setText(list.getCityName());
@@ -152,6 +150,10 @@ public class SearchPlacesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public void onClick(View view)
         {
             Integer integer = (Integer) view.getTag();
+            if(integer != null)
+            {
+                searchPlacesSectionClickListener.setOnClickListener(integer, null);
+            }
         }
     }
 }

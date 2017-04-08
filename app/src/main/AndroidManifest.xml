@@ -11,7 +11,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/FullScreenTheme">
 
         <activity android:name=".activity.SplashActivity"
             android:theme="@style/FullScreenTheme">
@@ -27,6 +27,12 @@
         </activity>
         <activity android:name=".search.SearchActivity">
         </activity>
+        <activity android:name=".locationdetails.LocationDetailsActivity">
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key"/>
     </application>
 
 </manifest>

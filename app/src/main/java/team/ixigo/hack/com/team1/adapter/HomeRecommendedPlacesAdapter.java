@@ -21,23 +21,28 @@ import team.ixigo.hack.com.team1.utility.AppUtil;
 
 public class HomeRecommendedPlacesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
+    public static final int TYPE_FLIGHT = 1;
+    public static final int TYPE_BUDGET_FLIGHT = 2;
+
     public static final int TYPE_ITEM = 1;
     public static final int TYPE_PROGRESS = 2;
     private ArrayList<RecommendedListResponse.Data.RecommendedItems> recommendedListResponses;
     private Activity context;
+    private int type;
 
     private HomeRecommendedPlacesSectionClickListener homeRecommendedPlacesSectionClickListener;
 
     public interface HomeRecommendedPlacesSectionClickListener
     {
-        void setOnClickListener(int position, String typeName);
+        void setOnClickListener(int position, int typeName);
     }
 
-    public HomeRecommendedPlacesAdapter(Activity context, ArrayList<RecommendedListResponse.Data.RecommendedItems> recommendedListResponses, HomeRecommendedPlacesSectionClickListener homeRecommendedPlacesSectionClickListener)
+    public HomeRecommendedPlacesAdapter(Activity context, ArrayList<RecommendedListResponse.Data.RecommendedItems> recommendedListResponses, HomeRecommendedPlacesSectionClickListener homeRecommendedPlacesSectionClickListener, int type)
     {
         this.context = context;
         this.recommendedListResponses = recommendedListResponses;
         this.homeRecommendedPlacesSectionClickListener = homeRecommendedPlacesSectionClickListener;
+        this.type = type;
     }
 
     @Override
@@ -81,7 +86,7 @@ public class HomeRecommendedPlacesAdapter extends RecyclerView.Adapter<RecyclerV
             recommendedHomeViewHolder.textViewCityName.setText(recommendedItems.getName());
             recommendedHomeViewHolder.textViewSearchCity.setText(recommendedItems.getCityName());
             recommendedHomeViewHolder.textViewSearchState.setText(recommendedItems.getStateName());
-            recommendedHomeViewHolder.textViewPrice.setText(recommendedItems.getPrice());
+            recommendedHomeViewHolder.textViewPrice.setText(context.getResources().getString(R.string.lable_prices) + " " + recommendedItems.getPrice());
 
             OnClickHandler onClickHandler = new OnClickHandler();
             recommendedHomeViewHolder.itemView.setTag(position);
@@ -152,6 +157,10 @@ public class HomeRecommendedPlacesAdapter extends RecyclerView.Adapter<RecyclerV
         public void onClick(View view)
         {
             Integer integer = (Integer) view.getTag();
+            if(integer != null)
+            {
+                homeRecommendedPlacesSectionClickListener.setOnClickListener(integer, type);
+            }
         }
     }
 }

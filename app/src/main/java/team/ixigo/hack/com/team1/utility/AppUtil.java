@@ -122,4 +122,20 @@ public class AppUtil
             }
         }
     }
+
+    public static double convertInDouble(String values)
+    {
+        double convertedValue = 0.0d;
+
+        try
+        {
+            convertedValue = Double.parseDouble(values);
+        }
+        catch(Exception exception)
+        {
+            convertedValue = 0.0d;
+        }
+
+        return convertedValue;
+    }
 }
