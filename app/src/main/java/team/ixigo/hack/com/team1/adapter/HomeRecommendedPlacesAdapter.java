@@ -62,7 +62,6 @@ public class HomeRecommendedPlacesAdapter extends RecyclerView.Adapter<RecyclerV
         {
             final HomeShopViewHolder homeShopViewHolder = (HomeShopViewHolder)holder;
             RecommendedListResponse recommendedListResponse = recommendedListResponses.get(position);
-
             if(position == (recommendedListResponses.size() - 1))
             {
                 homeShopViewHolder.views.setVisibility(View.GONE);
