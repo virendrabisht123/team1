@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Team1</string>
+    <string name="label_trip_advisor">Trip Advisor</string>
+
+    <string name="label_search">Search to visit</string>
+
+    <string name="title_pick_location">Select Location</string>
+    <string name="location_services_title">Location services disabled</string>
+    <string name="location_services_message">Please enable location services to discover the joy of indulgence.</string>
+    <string name="button_enabled">Enable</string>
+    <string name="button_dismiss">Dismiss</string>
+    <string name="location_permission">To access this feature Please enable Location permission from Application Setting.</string>
+    <string name="no_location_found">No Location found, please first pick the location</string>
+    <string name="getting_current_location">Getting location...</string>
+    <string name="make_order_message">Pending feature, coming soon......</string>
+    <string name="loading_for_processing">Loading...</string>
+    <string name="database_problem_occured">Some problem occured</string>
+    <string name="add_reviews_problem">There is some problem in adding reviews</string>
+    <string name="google_play_services_not_available">Google Play Services are not available on your Device</string>
+    <string name="no_data_found">No data found</string>
+    <string name="validation_enter_reviews">Please enter the review first</string>
+
 </resources>
