@@ -19,7 +19,8 @@
         android:textStyle="bold"
         android:textSize="@dimen/size_trip_advisor"
         android:layout_centerInParent="true"
-        android:textAllCaps="true"/>
+        android:textAllCaps="true"
+        android:textColor="@color/blue"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
         android:text="@string/label_power_by_ixigo"
         android:layout_centerInParent="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/blue"/>
 
 </RelativeLayout>

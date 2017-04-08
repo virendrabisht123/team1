@@ -29,7 +29,7 @@
 
                 <TextView
                     android:id="@+id/textViewSearch"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="@string/label_search"
                     android:textStyle="bold"
@@ -38,10 +38,9 @@
                     android:padding="6dp"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/blue"
-                    android:drawableRight="@drawable/ic_search"
                     android:background="@drawable/background_search_border"
                     android:layout_alignParentRight="true"
-                    android:drawablePadding="6dp"/>
+                    android:gravity="center_vertical|center_horizontal"/>
 
                 <EditText
                     android:id="@+id/editTextSearchLocation"
@@ -53,6 +52,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/relativeLayoutRecommendedPlaces"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/relativeLayoytTop">
@@ -87,8 +87,6 @@
                     android:id="@+id/recyclerViewRecommended1"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
                     android:layout_marginBottom="6dp"
                     android:divider="@null"
                     android:dividerHeight="10dp"
@@ -115,8 +113,6 @@
                     android:id="@+id/recyclerViewRecommended2"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
                     android:layout_marginBottom="6dp"
                     android:divider="@null"
                     android:dividerHeight="10dp"
@@ -127,12 +123,20 @@
             </RelativeLayout>
 
             <include
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 layout="@layout/item_progress"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:layout_below="@id/relativeLayoytTop"
+                android:layout_marginTop="160dp"
+                android:layout_centerInParent="true"/>
 
             <include
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 layout="@layout/error_view"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                android:layout_below="@id/relativeLayoytTop"/>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

@@ -59,6 +59,8 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
     TextView textViewTitle;
     @Bind(R.id.imageButtonBackPress)
     ImageButton imageButtonBackPress;
+    @Bind(R.id.textViewMessage)
+    TextView textViewMessage;
 
     private SearchPlacesAdapter searchPlacesAdapter;
     private ArrayList<SearchResponse> listArrayList;
@@ -103,10 +105,13 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
 
         searchPlacesAdapter = new SearchPlacesAdapter(this, listArrayList, this);
         recyclerViewRecommended1.setAdapter(searchPlacesAdapter);
+        textViewError.setOnClickListener(this);
     }
 
     private void initialData()
     {
+        hideView();
+
         Intent intent = getIntent();
         searchQuery = intent.getStringExtra(Constants.DATA);
 
@@ -116,7 +121,7 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
     @Override
     public void getSearchListSuccess(List<SearchResponse> response, Response retrofitResponse)
     {
-        relativeLayoutErrorOccured.setVisibility(View.GONE);
+        showView();
 
         listArrayList.clear();
 
@@ -126,12 +131,20 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
 
             searchPlacesAdapter.notifyDataSetChanged();
         }
+        else
+        {
+            textViewSearchList.setVisibility(View.GONE);
+            relativeLayoutErrorOccured.setVisibility(View.VISIBLE);
+            recyclerViewRecommended1.setVisibility(View.GONE);
+            textViewError.setVisibility(View.GONE);
+            textViewMessage.setText(getResources().getString(R.string.no_data_found));
+        }
     }
 
     @Override
     public void getSearchListError(RetrofitError error)
     {
-
+        handleWhenSomeProblemOccured(getResources().getString(R.string.some_problem_occured));
     }
 
     @Override
@@ -149,18 +162,21 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
     @Override
     public void showToastMessage()
     {
+        handleWhenSomeProblemOccured(getResources().getString(R.string.network_issues));
         Toast.makeText(this, getResources().getString(R.string.network_issues), Toast.LENGTH_SHORT).show();
     }
 
     private void getRecommendedLocationData(String query)
     {
+        showView();
+
         searchPresenter.getSearchList(Constants.SEARCH_FOR, Constants.NEW_CATEGORY, query, checkConnection, mainApp.getSearchServices());
     }
 
     @Override
     public void onClick(View view)
     {
-
+        getRecommendedLocationData(searchQuery);
     }
 
     @Override
@@ -172,5 +188,25 @@ public class SearchActivity extends BaseActivity implements SearchView, View.OnC
         Intent intent = new Intent(this, LocationDetailsActivity.class);
         intent.putExtra(Constants.CITY_ID, cityId);
         startActivity(intent);
+    }
+
+    private void handleWhenSomeProblemOccured(String message)
+    {
+        textViewMessage.setText(message);
+        hideView();
+    }
+
+    private void showView()
+    {
+        textViewSearchList.setVisibility(View.VISIBLE);
+        relativeLayoutErrorOccured.setVisibility(View.GONE);
+        recyclerViewRecommended1.setVisibility(View.VISIBLE);
+    }
+
+    private void hideView()
+    {
+        textViewSearchList.setVisibility(View.GONE);
+        relativeLayoutErrorOccured.setVisibility(View.VISIBLE);
+        recyclerViewRecommended1.setVisibility(View.GONE);
     }
 }

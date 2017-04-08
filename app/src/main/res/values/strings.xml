@@ -16,7 +16,7 @@
     <string name="getting_current_location">Getting location...</string>
     <string name="make_order_message">Pending feature, coming soon......</string>
     <string name="loading_for_processing">Loading...</string>
-    <string name="database_problem_occured">Some problem occured</string>
+    <string name="some_problem_occured">Some problem occured</string>
     <string name="add_reviews_problem">There is some problem in adding reviews</string>
     <string name="google_play_services_not_available">Google Play Services are not available on your Device</string>
     <string name="no_data_found">No data found</string>

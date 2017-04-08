@@ -41,7 +41,7 @@ import team.ixigo.hack.com.team1.utility.AppUtil;
 import team.ixigo.hack.com.team1.utility.CheckConnection;
 import team.ixigo.hack.com.team1.utility.Constants;
 
-public class LocationDetailsActivity extends BaseActivity implements LocationDetailsView, OnMapReadyCallback
+public class LocationDetailsActivity extends BaseActivity implements LocationDetailsView, OnMapReadyCallback, View.OnClickListener
 {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
@@ -81,6 +81,10 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
     TextView textViewLocationDescription;
     @Bind(R.id.textViewLocationDescriptionValue)
     TextView textViewLocationDescriptionValue;
+    @Bind(R.id.textViewMessage)
+    TextView textViewMessage;
+    @Bind(R.id.relativeLayoutOuter)
+    RelativeLayout relativeLayoutOuter;
 
     private SearchLocationDetailsResponse searchLocationDetailsResponse;
     private String cityId;
@@ -188,6 +192,7 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
         BackButtonClickListener backButtonClickListener = new BackButtonClickListener();
         imageButtonBackPress.setOnClickListener(backButtonClickListener);
         setToolBar(toolbar, textViewTitle, getResources().getString(R.string.title_search_details), false, false);
+        textViewError.setOnClickListener(this);
     }
 
     private void initialData()
@@ -206,11 +211,18 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
         {
             setDataOnViews(response);
         }
+        else
+        {
+            relativeLayoutErrorOccured.setVisibility(View.VISIBLE);
+            relativeLayoutOuter.setVisibility(View.GONE);
+            textViewError.setVisibility(View.GONE);
+            textViewMessage.setText(getResources().getString(R.string.no_data_found));
+        }
     }
 
     @Override
     public void getSearchDetailsError(RetrofitError error) {
-
+        handleWhenSomeProblemOccured(getResources().getString(R.string.some_problem_occured));
     }
 
     @Override
@@ -228,11 +240,14 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
     @Override
     public void showToastMessage()
     {
+        handleWhenSomeProblemOccured(getResources().getString(R.string.network_issues));
         Toast.makeText(this, getResources().getString(R.string.network_issues), Toast.LENGTH_SHORT).show();
     }
 
     private void getSearchLocationDetailsData(String cityId)
     {
+        showView();
+
         searchPresenter.getLocationDetails(cityId, Constants.API_KEY, checkConnection, mainApp.getSearchServices());
     }
 
@@ -301,5 +316,29 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        getSearchLocationDetailsData(cityId);
+    }
+
+    private void handleWhenSomeProblemOccured(String message)
+    {
+        textViewMessage.setText(message);
+        hideView();
+    }
+
+    private void showView()
+    {
+        relativeLayoutErrorOccured.setVisibility(View.GONE);
+        relativeLayoutOuter.setVisibility(View.VISIBLE);
+    }
+
+    private void hideView()
+    {
+        relativeLayoutErrorOccured.setVisibility(View.VISIBLE);
+        relativeLayoutOuter.setVisibility(View.GONE);
     }
 }

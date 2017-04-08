@@ -66,6 +66,10 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
     TextView textViewTitle;
     @Bind(R.id.imageButtonBackPress)
     ImageButton imageButtonBackPress;
+    @Bind(R.id.textViewMessage)
+    TextView textViewMessage;
+    @Bind(R.id.relativeLayoutRecommendedPlaces)
+    RelativeLayout relativeLayoutRecommendedPlaces;
 
     private HomeRecommendedPlacesAdapter homeRecommendedPlacesAdapter;
     private HomeRecommendedPlacesAdapter homeRecommendedPlacesAdapter1;
@@ -122,10 +126,13 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
         recyclerViewRecommended2.setAdapter(homeRecommendedPlacesAdapter1);
 
         textViewSearch.setOnClickListener(this);
+        textViewError.setOnClickListener(this);
     }
 
     private void initialData()
     {
+        hideView();
+
         recommendedItems2.clear();
         recommendedItems1.clear();
         homeRecommendedPlacesAdapter1.notifyDataSetChanged();
@@ -137,7 +144,7 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
     @Override
     public void getRecommendedListSuccess(RecommendedListResponse response, Response retrofitResponse)
     {
-        relativeLayoutErrorOccured.setVisibility(View.GONE);
+        showView();
 
         recommendedItems1.clear();
         recommendedItems2.clear();
@@ -147,12 +154,20 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
 
         homeRecommendedPlacesAdapter.notifyDataSetChanged();
         homeRecommendedPlacesAdapter1.notifyDataSetChanged();
+
+        if(AppUtil.isCollectionEmpty(recommendedItems1) && AppUtil.isCollectionEmpty(recommendedItems2))
+        {
+            relativeLayoutErrorOccured.setVisibility(View.VISIBLE);
+            relativeLayoutRecommendedPlaces.setVisibility(View.GONE);
+            textViewError.setVisibility(View.GONE);
+            textViewMessage.setText(getResources().getString(R.string.no_data_found));
+        }
     }
 
     @Override
     public void getRecommendedListError(RetrofitError error)
     {
-        relativeLayoutErrorOccured.setVisibility(View.VISIBLE);
+        handleWhenSomeProblemOccured(getResources().getString(R.string.some_problem_occured));
     }
 
     @Override
@@ -170,16 +185,33 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
     @Override
     public void showToastMessage()
     {
+        handleWhenSomeProblemOccured(getResources().getString(R.string.network_issues));
+
         Toast.makeText(this, getResources().getString(R.string.network_issues), Toast.LENGTH_SHORT).show();
     }
 
     private void getRecommendedLocationData()
     {
+        showView();
         homePresenter.getRecommendedList(Constants.PRODUCT_TYPE, Constants.API_KEY, checkConnection, mainApp.getSearchServices());
     }
 
     @Override
     public void onClick(View view)
+    {
+        int viewId = view.getId();
+        switch(viewId)
+        {
+            case R.id.textViewError:
+                handleWhenErrorOccured();
+                break;
+            case R.id.textViewSearch:
+                handleNavigationToSearchActivity();
+                break;
+        }
+    }
+
+    private void handleNavigationToSearchActivity()
     {
         String queryText = editTextSearchLocation.getText().toString();
         if(!AppUtil.isStringEmpty(queryText))
@@ -192,6 +224,11 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
         {
             Toast.makeText(this, getResources().getString(R.string.validation_search_location), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void handleWhenErrorOccured()
+    {
+        initialData();
     }
 
     @Override
@@ -210,5 +247,23 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
         Intent intent = new Intent(this, LocationDetailsActivity.class);
         intent.putExtra(Constants.CITY_ID, cityId);
         startActivity(intent);
+    }
+
+    private void handleWhenSomeProblemOccured(String message)
+    {
+        textViewMessage.setText(message);
+        hideView();
+    }
+
+    private void showView()
+    {
+        relativeLayoutErrorOccured.setVisibility(View.GONE);
+        relativeLayoutRecommendedPlaces.setVisibility(View.VISIBLE);
+    }
+
+    private void hideView()
+    {
+        relativeLayoutErrorOccured.setVisibility(View.VISIBLE);
+        relativeLayoutRecommendedPlaces.setVisibility(View.GONE);
     }
 }
