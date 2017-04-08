@@ -76,9 +76,9 @@ public class SearchPlacesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 //Picasso.with(context).load(list.getUrl()).into(recommendedHomeViewHolder.imageViewCity);
             }
 
-            recommendedHomeViewHolder.textViewCityName.setText(list.getCityName());
-            recommendedHomeViewHolder.textViewSearchCountry.setText(list.getCountry());
-            recommendedHomeViewHolder.textViewSearchState.setText(list.getState());
+            recommendedHomeViewHolder.textViewCityName.setText(context.getResources().getString(R.string.lable_city_name) + " " + list.getCityName());
+            recommendedHomeViewHolder.textViewSearchCountry.setText(context.getResources().getString(R.string.lable_country_name) + " " + list.getCountry());
+            recommendedHomeViewHolder.textViewSearchState.setText(context.getResources().getString(R.string.lable_state_name) + " " + list.getState());
             recommendedHomeViewHolder.textViewAddress.setText(list.getAddress());
 
             OnClickHandler onClickHandler = new OnClickHandler();

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="team.ixigo.hack.com.team1.landing.MainActivity">
+    tools:context="team.ixigo.hack.com.team1.landing.MainActivity"
+    android:background="@color/white">
 
     <include
         android:id="@+id/toolbarLayout"
@@ -73,12 +74,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Best Budget places"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
                     android:layout_below="@id/textViewRecommendedText"
                     android:textSize="@dimen/size_extra_large"
-                    android:background="@color/background"
+                    android:background="@color/blue"
                     android:gravity="center_horizontal"
                     android:padding="6dp"/>
 
@@ -105,9 +106,10 @@
                     android:text="Cheap Budget places"
                     android:textStyle="bold"
                     android:textSize="@dimen/size_extra_large"
-                    android:background="@color/background"
+                    android:background="@color/blue"
                     android:gravity="center_horizontal"
-                    android:padding="6dp"/>
+                    android:padding="6dp"
+                    android:textColor="@color/white"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerViewRecommended2"

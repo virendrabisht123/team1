@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <include
         android:id="@+id/toolbarLayout"
@@ -17,11 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Check following places"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:textSize="@dimen/size_extra_large"
-        android:background="@color/background"
+        android:background="@color/blue"
         android:gravity="center_horizontal"
         android:padding="6dp"/>
 

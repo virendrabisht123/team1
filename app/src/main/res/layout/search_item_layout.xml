@@ -18,7 +18,8 @@
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:src="@drawable/trip_advisor_icon"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:background="@drawable/background_search_border_list"/>
 
         <RelativeLayout
             android:id="@+id/relativeLayoutParent"
@@ -36,24 +37,30 @@
                     android:id="@+id/textViewCityName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textSize="@dimen/size_normal"/>
 
                 <TextView
                     android:id="@+id/textViewSearchState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textViewCityName"/>
+                    android:layout_below="@id/textViewCityName"
+                    android:textSize="@dimen/size_normal"/>
+
                 <TextView
                     android:id="@+id/textViewSearchCountry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textViewSearchState"/>
+                    android:layout_below="@id/textViewSearchState"
+                    android:textSize="@dimen/size_normal"/>
 
                 <TextView
                     android:id="@+id/textViewAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textViewSearchCountry"/>
+                    android:layout_below="@id/textViewSearchCountry"
+                    android:textSize="@dimen/size_normal"
+                    android:visibility="gone"/>
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
