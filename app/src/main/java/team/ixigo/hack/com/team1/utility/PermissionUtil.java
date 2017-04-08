@@ -7,9 +7,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
-/**
- * Created by zopper.
- */
 public class PermissionUtil
 {
     public static final int PERMISSION_ONE = 0;

@@ -8,9 +8,6 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import java.util.Collection;
 
-/**
- * Created by zopper on 24/8/16.
- */
 public class AppUtil
 {
     /**

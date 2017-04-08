@@ -7,9 +7,6 @@ import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Build;
 
-/**
- * Created by zopper on 24/8/16.
- */
 public class CheckConnection
 {
     private final Context context;
