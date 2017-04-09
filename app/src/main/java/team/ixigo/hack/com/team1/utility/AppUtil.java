@@ -138,4 +138,20 @@ public class AppUtil
 
         return convertedValue;
     }
+
+    public static double convertInInteger(String values)
+    {
+        int convertedValue = 0;
+
+        try
+        {
+            convertedValue = Integer.parseInt(values);
+        }
+        catch(Exception exception)
+        {
+            convertedValue = 0;
+        }
+
+        return convertedValue;
+    }
 }

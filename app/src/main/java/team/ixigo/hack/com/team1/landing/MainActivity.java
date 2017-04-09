@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -31,6 +34,7 @@ import team.ixigo.hack.com.team1.search.SearchActivity;
 import team.ixigo.hack.com.team1.utility.AppUtil;
 import team.ixigo.hack.com.team1.utility.CheckConnection;
 import team.ixigo.hack.com.team1.utility.Constants;
+import team.ixigo.hack.com.team1.utility.FilterUtility;
 
 public class MainActivity extends BaseActivity implements HomeView, View.OnClickListener, HomeRecommendedPlacesAdapter.HomeRecommendedPlacesSectionClickListener
 {
@@ -70,6 +74,10 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
     TextView textViewMessage;
     @Bind(R.id.relativeLayoutRecommendedPlaces)
     RelativeLayout relativeLayoutRecommendedPlaces;
+    @Bind(R.id.textViewNormal)
+    TextView textViewNormal;
+    @Bind(R.id.textViewRecommendedText)
+    TextView textViewRecommendedText;
 
     private HomeRecommendedPlacesAdapter homeRecommendedPlacesAdapter;
     private HomeRecommendedPlacesAdapter homeRecommendedPlacesAdapter1;
@@ -138,6 +146,8 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
         homeRecommendedPlacesAdapter1.notifyDataSetChanged();
         homeRecommendedPlacesAdapter.notifyDataSetChanged();
 
+        setAnimation();
+
         getRecommendedLocationData();
     }
 
@@ -152,6 +162,10 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
         recommendedItems1.addAll(response.getData().getFlight());
         recommendedItems2.addAll(response.getData().getBudget_flight());
 
+        //Price Is Sorted On Ascending Order
+        Collections.sort(recommendedItems1, new FilterUtility.PriceComparator());
+        Collections.sort(recommendedItems2, new FilterUtility.PriceComparator());
+
         homeRecommendedPlacesAdapter.notifyDataSetChanged();
         homeRecommendedPlacesAdapter1.notifyDataSetChanged();
 
@@ -162,6 +176,16 @@ public class MainActivity extends BaseActivity implements HomeView, View.OnClick
             textViewError.setVisibility(View.GONE);
             textViewMessage.setText(getResources().getString(R.string.no_data_found));
         }
+    }
+
+    private void setAnimation()
+    {
+        Animation animationToLeft = new TranslateAnimation(400, -400, 0, 0);
+        animationToLeft.setDuration(6000);
+        animationToLeft.setRepeatMode(Animation.RESTART);
+        animationToLeft.setRepeatCount(Animation.INFINITE);
+
+        textViewRecommendedText.setAnimation(animationToLeft);
     }
 
     @Override

@@ -33,23 +33,24 @@
                     android:layout_height="wrap_content"
                     android:text="@string/label_search"
                     android:textStyle="bold"
-                    android:textSize="@dimen/size_trip_advisor"
+                    android:textSize="@dimen/size_normal"
                     android:layout_centerHorizontal="true"
-                    android:padding="6dp"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/blue"
                     android:background="@drawable/background_search_border"
                     android:layout_alignParentRight="true"
-                    android:gravity="center_vertical|center_horizontal"/>
+                    android:gravity="center_vertical|center_horizontal"
+                    android:hint="@string/text_search_places"/>
 
                 <EditText
                     android:id="@+id/editTextSearchLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/textViewSearch"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:lines="1"/>
             </RelativeLayout>
-
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutRecommendedPlaces"
@@ -73,7 +74,7 @@
                     android:id="@+id/textViewNormal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Best Budget places"
+                    android:text="@string/text_best_budget_places"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
@@ -101,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/recyclerViewRecommended1"
                     android:layout_marginTop="10dp"
-                    android:text="Cheap Budget places"
+                    android:text="@string/text_cheap_prices"
                     android:textStyle="bold"
                     android:textSize="@dimen/size_extra_large"
                     android:background="@color/blue"

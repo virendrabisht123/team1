@@ -3,8 +3,10 @@ package team.ixigo.hack.com.team1.locationdetails;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +27,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
+
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -85,6 +89,10 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
     TextView textViewMessage;
     @Bind(R.id.relativeLayoutOuter)
     RelativeLayout relativeLayoutOuter;
+    private double latitude;
+    private double longitude;
+    @Bind(R.id.floatingButtonNavigateGoogleMap)
+    FloatingActionButton floatingButtonNavigateGoogleMap;
 
     private SearchLocationDetailsResponse searchLocationDetailsResponse;
     private String cityId;
@@ -193,6 +201,7 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
         imageButtonBackPress.setOnClickListener(backButtonClickListener);
         setToolBar(toolbar, textViewTitle, getResources().getString(R.string.title_search_details), false, false);
         textViewError.setOnClickListener(this);
+        floatingButtonNavigateGoogleMap.setOnClickListener(this);
     }
 
     private void initialData()
@@ -262,6 +271,9 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
             latitude = AppUtil.convertInDouble(data.getLatitude());
             longitude = AppUtil.convertInDouble(data.getLongitude());
 
+            this.latitude = latitude;
+            this.longitude = longitude;
+
             handleSetlocation(latitude, longitude);
             textViewCountryName.setText(getResources().getString(R.string.lable_country_name) + " " + data.getCountryName());
             textViewName.setText(getResources().getString(R.string.lable_city_name) + " " + data.getName());
@@ -318,10 +330,34 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
     }
 
+    private void navigateToGoogleMap()
+    {
+        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+
+        try
+        {
+            startActivity(intent);
+        }
+        catch(Exception exception)
+        {
+            //TODO Consume It
+        }
+    }
+
     @Override
     public void onClick(View view)
     {
-        getSearchLocationDetailsData(cityId);
+        int viewId = view.getId();
+        switch(viewId)
+        {
+            case R.id.floatingButtonNavigateGoogleMap:
+                navigateToGoogleMap();
+                break;
+            case R.id.textViewError:
+                getSearchLocationDetailsData(cityId);
+                break;
+        }
     }
 
     private void handleWhenSomeProblemOccured(String message)

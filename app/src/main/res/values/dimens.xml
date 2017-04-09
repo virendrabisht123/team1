@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="size_trip_advisor">18sp</dimen>
+    <dimen name="size_trip_advisor">24sp</dimen>
     <dimen name="size_recommended_text">20sp</dimen>
     <dimen name="size_extra_large">20sp</dimen>
     <dimen name="size_normal">18sp</dimen>

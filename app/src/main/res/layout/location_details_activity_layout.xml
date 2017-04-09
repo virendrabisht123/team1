@@ -37,13 +37,17 @@
                 </RelativeLayout>
 
                 <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/floatingButtonNavigateGoogleMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
                     android:src="@drawable/floating_map_icon"
                     app:layout_anchor="@id/relativeLayoutMap"
-                    app:layout_anchorGravity="bottom|right|end"/>
+                    app:layout_anchorGravity="bottom|right|end"
+                    android:layout_below="@id/relativeLayoutMap"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginTop="-28dp"/>
 
                 <TextView
                     android:id="@+id/textViewCountryName"
@@ -54,9 +58,12 @@
                     android:padding="6dp"
                     android:layout_below="@id/relativeLayoutMap"
                     android:textSize="@dimen/size_normal"
-                    android:layout_margin="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/blue"/>
 
                 <TextView
                     android:id="@+id/textViewName"
@@ -105,7 +112,6 @@
                     android:textSize="@dimen/size_normal"
                     android:layout_margin="10dp"
                     android:layout_centerHorizontal="true"
-                    android:textStyle="bold"
                     android:background="@drawable/background_search_border_list"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"

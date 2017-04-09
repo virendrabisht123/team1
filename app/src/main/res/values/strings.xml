@@ -36,4 +36,12 @@
     <string name="lable_state_name">State Name :</string>
     <string name="lable_description_of_country">Description :</string>
 
+    <!-- Main Screen -->
+    <string name="text_best_budget_places">Best Budget places</string>
+    <string name="text_cheap_prices">Cheap Budget places</string>
+    <string name="text_search_places">Search places</string>
+
+    <!-- Search Screen -->
+    <string name="text_search_result">Places are in Search result</string>
+
 </resources>

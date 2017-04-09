@@ -6,7 +6,11 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import team.ixigo.hack.com.team1.R;
 import team.ixigo.hack.com.team1.landing.MainActivity;
 import team.ixigo.hack.com.team1.utility.Constants;
@@ -19,12 +23,15 @@ public class SplashActivity extends AppCompatActivity
 {
     private Handler handler;
     private SplashRunnable splashRunnable;
+    @Bind(R.id.textViewTripMessages)
+    TextView textViewTripMessages;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity_layout);
+        ButterKnife.bind(this);
 
         initializeView();
     }
@@ -37,6 +44,8 @@ public class SplashActivity extends AppCompatActivity
 
         //Create Splash Runnable Inner Class Instance
         splashRunnable = new SplashRunnable();
+
+        textViewTripMessages.startAnimation(AnimationUtils.loadAnimation(this, R.anim.left_to_right));
     }
 
     @Override

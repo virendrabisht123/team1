@@ -19,7 +19,7 @@
             android:id="@+id/imageViewCity"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/trip_advisor_icon"
             android:layout_centerHorizontal="true"/>
 
         <RelativeLayout
@@ -27,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/imageViewCity"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:layout_marginTop="8dp">
 
             <RelativeLayout
                 android:id="@+id/relativeLayoutNames"
@@ -40,27 +41,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:gravity="center_horizontal"/>
+                    android:gravity="center_horizontal"
+                    android:layout_centerHorizontal="true"/>
 
                 <TextView
                     android:id="@+id/textViewSearchCity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewCityName"
-                    android:gravity="center_horizontal"/>
+                    android:gravity="center_horizontal"
+                    android:layout_centerHorizontal="true"/>
+
                 <TextView
                     android:id="@+id/textViewSearchState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSearchCity"
                     android:gravity="center_horizontal"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    android:layout_centerHorizontal="true"/>
+
                 <TextView
                     android:id="@+id/textViewPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSearchState"
-                    android:gravity="center_horizontal"/>
+                    android:gravity="center_horizontal"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/blue"/>
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
