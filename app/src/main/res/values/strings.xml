@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Trip Adviser</string>
+    <string name="app_name">Trip Advisor</string>
     <string name="label_trip_advisor">Trip Advisor</string>
     <string name="label_power_by_ixigo">Powered by @abc</string>
 
@@ -29,7 +29,7 @@
     <!-- Title -->
     <string name="title_home_screen">Home Screen</string>
     <string name="title_search_screen">Search Screen</string>
-    <string name="title_search_details">Location Details</string>
+    <string name="title_search_details">Details Screen</string>
 
     <string name="lable_country_name">Country Name :</string>
     <string name="lable_city_name">City Name :</string>
@@ -40,8 +40,9 @@
     <string name="text_best_budget_places">Best Budget places</string>
     <string name="text_cheap_prices">Cheap Budget places</string>
     <string name="text_search_places">Search places</string>
+    <string name="text_ixigo_recommedation">Select from Ixigo recommendations</string>
 
     <!-- Search Screen -->
-    <string name="text_search_result">Places are in Search result</string>
+    <string name="text_search_result">Places are in search Result</string>
 
 </resources>

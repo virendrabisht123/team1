@@ -281,7 +281,14 @@ public class LocationDetailsActivity extends BaseActivity implements LocationDet
 
             if(!AppUtil.isStringEmpty(data.getDescription()))
             {
+                textViewLocationDescriptionValue.setVisibility(View.VISIBLE);
+                textViewLocationDescription.setVisibility(View.VISIBLE);
                 textViewLocationDescriptionValue.setText(Html.fromHtml(data.getDescription()));
+            }
+            else
+            {
+                textViewLocationDescriptionValue.setVisibility(View.GONE);
+                textViewLocationDescription.setVisibility(View.GONE);
             }
 
             if(!AppUtil.isStringEmpty(data.getKeyImageUrl()))
