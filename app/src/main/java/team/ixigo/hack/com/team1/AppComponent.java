@@ -12,6 +12,7 @@ import team.ixigo.hack.com.team1.utility.CheckConnection;
 public interface AppComponent
 {
     void inject(MainApp app);
+
     MainApp getRMSApp();
     RestDataSource getRestDataSource();
     CheckConnection getCheckConnection();
